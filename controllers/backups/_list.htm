@@ -1,0 +1,36 @@
+<div class="control-list">
+    <table class="table data">
+        <thead>
+        <tr>
+            <th><span>Name</span></th>
+            <th><span>Size</span></th>
+            <th><span>Last Modified</span></th>
+            <th><span>Action</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php if (empty($backupFiles)): ?>
+            <tr class="no-data">
+                <td colspan="100" class="nolink">
+                    <p class="no-data">
+                        There are no any backups yet.
+                    </p>
+                </td>
+            </tr>
+        <?php else: ?>
+            <?php foreach ($backupFiles as $file): ?>
+                <tr>
+                    <td><?= $file['fileInfo']['basename'] ?></td>
+                    <td><?= $file['size'] ?>KB</td>
+                    <td><?= $file['lastModified'] ?></td>
+                    <td class="column-button nolink">
+                        <a href="/storage/app/panakour-backup/<?=$file['fileInfo']['basename']?>" class="btn btn-success btn-sm">
+                            Download
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach ?>
+        <?php endif ?>
+        </tbody>
+    </table>
+</div>

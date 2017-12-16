@@ -1,0 +1,17 @@
+{
+  "name": "panakour/oc-backup-plugin",
+  "type": "october-plugin",
+  "description": "Backup files and database of October CMS",
+  "keywords": ["octobercms", "backup"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Panagiots Koursaris",
+      "email": "panakourweb@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "spatie/laravel-backup": "~5.0"
+  }
+}

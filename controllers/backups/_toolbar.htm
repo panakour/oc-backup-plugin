@@ -1,0 +1,36 @@
+<div class="control-toolbar">
+    <div class="toolbar-item toolbar-primary">
+        <div data-control="toolbar">
+
+            <button type="button"
+                    class="btn btn-primary oc-icon-floppy-o create-backup"
+                    data-request="onCreateBackup"
+                    data-request-complete="$('.loading-indicator-container').css('display', 'none')">
+                Create backup
+            </button>
+
+            <button type="button"
+                    class="btn btn-default oc-icon-database create-backup"
+                    data-request="onCreateDatabaseBackup"
+                    data-request-complete="$('.loading-indicator-container').css('display', 'none')">
+                Create database backup
+            </button>
+
+            <button type="button"
+                    class="btn btn-success oc-icon-copy create-backup"
+                    data-request="onCreateFilesBackup"
+                    data-request-complete="$('.loading-indicator-container').css('display', 'none')">
+                Create files backup
+            </button>
+
+            <div class="loading-indicator-container">
+                <div class="loading-indicator size-small">
+                    <span></span>
+                    <div>Getting Backup...</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

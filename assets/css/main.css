@@ -1,0 +1,5 @@
+.loading-indicator-container {
+    display: none;
+    position: relative;
+    min-height: 17px;
+}

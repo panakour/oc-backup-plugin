@@ -1,0 +1,52 @@
+fields:
+
+    filename_prefix:
+        label: Filename prefix
+        span: auto
+        placeholder: The filename prefix used for the backup zip file.
+
+tabs:
+
+  fields:
+
+    include_files:
+      tab: Files
+      label: Include
+      span: auto
+      type: repeater
+      commentAbove: The list of directories and files that will be included in the backup. You need to specify the exactly path from the project root e.g. to include all files just type slash "/"
+      form:
+          fields:
+              path:
+                  label: Path
+                  type: text
+
+    exclude_files:
+      tab: Files
+      label: Exclude
+      span: auto
+      type: repeater
+      commentAbove: These directories and files will be excluded from the backup. Directories used by the backup process will automatically be excluded. You need to specify the exactly path from the project root e.g. to exclude all plugin from the rainlab author "plugins/rainlab"
+      form:
+          fields:
+              path:
+                  label: Path
+                  type: text
+
+    database_driver:
+      tab: Database
+      label: Database Driver
+      span: auto
+      type: dropdown
+      options:
+          mysql: MySQL
+          pgsql: PostgreSQL
+          sqlite: SQLite
+          mongodb: Mongo
+
+    gzip_database_dumps:
+      tab: Database
+      label: Enable gzip database backup
+      span: auto
+      type: switch
+      comment: The database dump can be gzipped to decrease diskspace usage. Good for large databases.
