@@ -1,3 +1,4 @@
 1.0.1:
     - First version of backup plugin.
     - seed_default_settings.php
+1.0.2: Fixes bug when no backup folder exist
