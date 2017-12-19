@@ -25,7 +25,7 @@ class Plugin extends PluginBase
     public function registerNavigation()
     {
         return [
-            'backups' => [
+            'backup' => [
                 'label' => 'Backup',
                 'url'   => Backend::url('panakour/backup/backups'),
                 'icon'  => 'icon-floppy-o',

@@ -18,14 +18,14 @@ class Backups extends Controller
     {
         parent::__construct();
         $this->repo = $repository;
-        BackendMenu::setContext('PanaKour.Backup', 'backups', 'backups');
+        BackendMenu::setContext('PanaKour.Backup', 'backup', 'backups');
     }
 
     public function index()
     {
         $this->addJs('/plugins/panakour/backup/assets/js/backups-page.js');
         $this->addCss('/plugins/panakour/backup/assets/css/main.css');
-        $this->vars['backupFiles'] = $this->repo->getAll();;
+        $this->vars['backupFiles'] = $this->repo->getAll();
     }
 
     public function onCreateBackup()
