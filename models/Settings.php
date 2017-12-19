@@ -12,8 +12,10 @@ class Settings extends Model
     public static function getIncludedFiles()
     {
         $includedPaths = [];
-        foreach (self::get('include_files') as $item) {
-            $includedPaths[] = base_path($item['path']);
+        if (self::get('include_files')) {
+            foreach (self::get('include_files') as $item) {
+                $includedPaths[] = base_path($item['path']);
+            }
         }
         return $includedPaths;
     }
@@ -21,34 +23,36 @@ class Settings extends Model
     public static function getExcludedFiles()
     {
         $excludedPaths = [];
-        foreach (self::get('exclude_files') as $item) {
-            $excludedPaths[] = base_path($item['path']);
+        if (self::get('exclude_files')) {
+            foreach (self::get('exclude_files') as $item) {
+                $excludedPaths[] = base_path($item['path']);
+            }
         }
         return $excludedPaths;
     }
 
     public static function getDatabaseDriver()
     {
-        if(!self::get('database_driver')) {
-            return 'mysql';
+        if (self::get('database_driver')) {
+            return self::get('database_driver');
         }
-        return self::get('database_driver');
+        return 'mysql';
     }
 
     public static function isGzipEnabled()
     {
-        if(!self::get('gzip_database_dumps')) {
-            return false;
+        if (self::get('gzip_database_dumps')) {
+            return self::get('gzip_database_dumps');
         }
-        return self::get('gzip_database_dumps');
+        return false;
     }
 
     public static function getFileNamePrefix()
     {
-        if(!self::get('filename_prefix')) {
-            return '';
+        if (self::get('filename_prefix')) {
+            return self::get('filename_prefix');
         }
-        return self::get('filename_prefix');
+        return '';
     }
 
 }
