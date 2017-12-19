@@ -71,7 +71,7 @@ return [
                  */
                 'monitorBackups' => [
                     [
-                        'name' => config('app.name'),
+                        'name' => 'panakour-backup',
                         'disks' => ['local'],
                         'newestBackupsShouldNotBeOlderThanDays' => 1,
                         'storageUsedMayNotBeHigherThanMegabytes' => 5000,
