@@ -6,6 +6,7 @@ return [
         'spatie/laravel-backup' => [
             'providers' => [
                 \Spatie\Backup\BackupServiceProvider::class,
+                \PanaKour\Backup\DropboxServiceProvider::class
             ],
 
             'config_namespace' => 'backup',
@@ -59,7 +60,7 @@ return [
                          * The disk names on which the backups will be stored.
                          */
                         'disks' => [
-                            'local',
+                            \Panakour\Backup\Models\Settings::getStorage(),
                         ],
                     ],
                 ],
@@ -72,7 +73,7 @@ return [
                 'monitorBackups' => [
                     [
                         'name' => 'panakour-backup',
-                        'disks' => ['local'],
+                        'disks' => [\Panakour\Backup\Models\Settings::getStorage()],
                         'newestBackupsShouldNotBeOlderThanDays' => 1,
                         'storageUsedMayNotBeHigherThanMegabytes' => 5000,
                     ],

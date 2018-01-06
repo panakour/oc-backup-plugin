@@ -3,6 +3,7 @@
         <thead>
         <tr>
             <th><span>Name</span></th>
+            <th><span>Storage</span></th>
             <th><span>Size</span></th>
             <th><span>Last Modified</span></th>
             <th><span>Action</span></th>
@@ -21,10 +22,17 @@
             <?php foreach ($backupFiles as $file): ?>
                 <tr>
                     <td><?= $file['fileInfo']['basename'] ?></td>
+                    <td><?= $file['storage'] ?></td>
                     <td><?= $file['size'] ?>KB</td>
                     <td><?= $file['lastModified'] ?></td>
                     <td class="column-button nolink">
-                        <a href="/storage/app/panakour-backup/<?=$file['fileInfo']['basename']?>" class="btn btn-success btn-sm">
+                        <a
+                            <?php if ($file['storage'] === 'Local'): ?>
+                                href="/storage/app/panakour-backup/<?= $file['fileInfo']['basename'] ?>"
+                            <?php else: ?>
+                                href="<?= Backend::url('panakour/backup/backups/downloadDropboxBackup/' . $file['fileInfo']['basename']) ?>"
+                            <?php endif ?>
+                        class="btn btn-success btn-sm">
                             Download
                         </a>
                     </td>

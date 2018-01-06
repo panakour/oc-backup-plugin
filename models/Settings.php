@@ -55,4 +55,12 @@ class Settings extends Model
         return '';
     }
 
+    public static function getStorage()
+    {
+        if (self::get('storage')) {
+            return self::get('storage');
+        }
+        return 'local';
+    }
+
 }

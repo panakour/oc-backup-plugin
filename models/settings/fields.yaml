@@ -5,6 +5,14 @@ fields:
         span: auto
         placeholder: The filename prefix used for the backup zip file.
 
+    storage:
+      label: Storage
+      span: auto
+      type: dropdown
+      options:
+          local: Local
+          dropbox: Dropbox
+
 tabs:
 
   fields:

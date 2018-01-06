@@ -6,6 +6,7 @@ use Artisan;
 use Backend;
 use Flash;
 use Illuminate\Support\Facades\Redirect;
+use PanaKour\Backup\Dropbox;
 use PanaKour\Backup\Repository;
 
 class Backups extends Controller
@@ -49,4 +50,8 @@ class Backups extends Controller
         return Redirect::to(Backend::url('panakour/backup/backups'));
     }
 
+    public function downloadDropboxBackup($baseName)
+    {
+        (new Dropbox())->downloadBackup($baseName);
+    }
 }
