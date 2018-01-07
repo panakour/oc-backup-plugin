@@ -30,6 +30,5 @@ class Dropbox
         $file = $this->adapter->read($this->path . '/' . $baseName)['contents'];
         header("Content-Type: application/zip");
         echo $file;
-        exit;
     }
 }
