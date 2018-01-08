@@ -14,10 +14,13 @@ class Dropbox
 
     public function __construct()
     {
-        $this->client = new Client(Config::get('filesystems.disks.dropbox.authorizationToken'));
+        $accessToken = Config::get('filesystems.disks.dropbox.authorizationToken') ? Config::get('filesystems.disks.dropbox.authorizationToken') : '';
+        $this->client = new Client($accessToken);
         $this->adapter = new DropboxAdapter($this->client);
         $this->fileSystem = new Filesystem($this->adapter);
-        $this->path = $this->fileSystem->listContents()[0]['path'];
+        if(isset($this->fileSystem->listContents()[0])) {
+            $this->path = $this->fileSystem->listContents()[0]['path'];
+        }
     }
 
     public function getBackups()
