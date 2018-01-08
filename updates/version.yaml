@@ -4,3 +4,4 @@
 1.0.2: Fixes bug when no backup folder exist
 1.0.3: Settings button directly in toolbar of backup list. Fixed monitored backups name
 1.0.4: Support Dropbox storage driver
+1.0.5: Support Dropbox storage driver (Fix if not configured yet)
