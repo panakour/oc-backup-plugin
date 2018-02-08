@@ -1,13 +1,27 @@
 <?php namespace Panakour\Backup\Models;
 
 use October\Rain\Database\Model;
+use October\Rain\Support\Facades\Config;
+use October\Rain\Support\Facades\File;
 
 class Settings extends Model
 {
+    const UPLOAD_PATH = 'app/uploads';
 
     public $implement = ['System.Behaviors.SettingsModel'];
     public $settingsCode = 'panakour_backup_settings';
     public $settingsFields = 'fields.yaml';
+
+    public static function getBackupsPath()
+    {
+        $path = storage_path(self::UPLOAD_PATH.'/'.Config::get('backup.backup.name'));
+
+        if (!File::exists($path)) {
+            File::makeDirectory($path, 0775);
+        }
+
+        return $path;
+    }
 
     public static function getIncludedFiles()
     {

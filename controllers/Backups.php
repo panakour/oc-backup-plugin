@@ -6,7 +6,9 @@ use Artisan;
 use Backend;
 use Flash;
 use Illuminate\Support\Facades\Redirect;
+use October\Rain\Support\Facades\Config;
 use PanaKour\Backup\Dropbox;
+use Panakour\Backup\Models\Settings;
 use PanaKour\Backup\Repository;
 
 class Backups extends Controller
@@ -27,27 +29,30 @@ class Backups extends Controller
         $this->addJs('/plugins/panakour/backup/assets/js/backups-page.js');
         $this->addCss('/plugins/panakour/backup/assets/css/main.css');
         $this->vars['backupFiles'] = $this->repo->getAll();
+        $this->vars['oldPathBackupFiles'] = $this->repo->getLocalBackupsInTheOldPath();
+    }
+
+    public function createBackup($artisanArguments)
+    {
+        Config::set('filesystems.disks.local.root', storage_path(Settings::UPLOAD_PATH));
+        Artisan::call('backup:run', $artisanArguments);
+        Flash::success('Backup has been created.');
+        return Redirect::to(Backend::url('panakour/backup/backups'));
     }
 
     public function onCreateBackup()
     {
-        Artisan::call('backup:run', ['--disable-notifications' => true]);
-        Flash::success('Created Backup of whole app');
-        return Redirect::to(Backend::url('panakour/backup/backups'));
+        return $this->createBackup(['--disable-notifications' => true]);
     }
 
     public function onCreateDatabaseBackup()
     {
-        Artisan::call('backup:run', ['--disable-notifications' => true, '--only-db' => true]);
-        Flash::success('Created Backup of database only');
-        return Redirect::to(Backend::url('panakour/backup/backups'));
+        return $this->createBackup(['--disable-notifications' => true, '--only-db' => true]);
     }
 
     public function onCreateFilesBackup()
     {
-        Artisan::call('backup:run', ['--disable-notifications' => true, '--only-files' => true]);
-        Flash::success('Created Backup of files only');
-        return Redirect::to(Backend::url('panakour/backup/backups'));
+        return $this->createBackup(['--disable-notifications' => true, '--only-files' => true]);
     }
 
     public function downloadDropboxBackup($baseName)
