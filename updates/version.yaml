@@ -5,3 +5,4 @@
 1.0.3: Settings button directly in toolbar of backup list. Fixed monitored backups name
 1.0.4: Support Dropbox storage driver
 1.0.5: Support Dropbox storage driver (Fix if not configured yet)
+1.0.6: Change the backups path to fix 404 error on apache server because of the default .htaccess
