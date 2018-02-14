@@ -9,14 +9,16 @@ class Settings extends Model
     const UPLOAD_PATH = 'app/uploads';
 
     public $implement = ['System.Behaviors.SettingsModel'];
+
     public $settingsCode = 'panakour_backup_settings';
+
     public $settingsFields = 'fields.yaml';
 
     public static function getBackupsPath()
     {
         $path = storage_path(self::UPLOAD_PATH.'/'.Config::get('backup.backup.name'));
 
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             File::makeDirectory($path, 0775);
         }
 
@@ -31,6 +33,7 @@ class Settings extends Model
                 $includedPaths[] = base_path($item['path']);
             }
         }
+
         return $includedPaths;
     }
 
@@ -42,6 +45,7 @@ class Settings extends Model
                 $excludedPaths[] = base_path($item['path']);
             }
         }
+
         return $excludedPaths;
     }
 
@@ -50,6 +54,7 @@ class Settings extends Model
         if (self::get('database_driver')) {
             return self::get('database_driver');
         }
+
         return 'mysql';
     }
 
@@ -58,6 +63,7 @@ class Settings extends Model
         if (self::get('gzip_database_dumps')) {
             return self::get('gzip_database_dumps');
         }
+
         return false;
     }
 
@@ -66,6 +72,7 @@ class Settings extends Model
         if (self::get('filename_prefix')) {
             return self::get('filename_prefix');
         }
+
         return '';
     }
 
@@ -74,7 +81,7 @@ class Settings extends Model
         if (self::get('storage')) {
             return self::get('storage');
         }
+
         return 'local';
     }
-
 }

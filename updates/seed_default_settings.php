@@ -5,7 +5,6 @@ use Panakour\Backup\Models\Settings;
 
 class SeedDefaultSettings extends Seeder
 {
-
     public function run()
     {
         $pathsToInclude = [
@@ -14,10 +13,9 @@ class SeedDefaultSettings extends Seeder
         ];
         $pathsToExclude = [
             ['path' => 'vendor'],
-            ['path' => 'plugins/rainlab']
+            ['path' => 'plugins/rainlab'],
         ];
         Settings::set('include_files', $pathsToInclude);
         Settings::set('exclude_files', $pathsToExclude);
     }
-
 }

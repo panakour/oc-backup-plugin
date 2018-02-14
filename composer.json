@@ -2,7 +2,10 @@
   "name": "panakour/oc-backup-plugin",
   "type": "october-plugin",
   "description": "Backup files and database of October CMS",
-  "keywords": ["octobercms", "backup"],
+  "keywords": [
+    "octobercms",
+    "backup"
+  ],
   "license": "MIT",
   "authors": [
     {

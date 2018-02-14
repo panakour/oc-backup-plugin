@@ -8,8 +8,11 @@ use Spatie\FlysystemDropbox\DropboxAdapter;
 class Dropbox
 {
     protected $client;
+
     protected $adapter;
+
     protected $fileSystem;
+
     protected $path;
 
     public function __construct()
@@ -18,7 +21,7 @@ class Dropbox
         $this->client = new Client($accessToken);
         $this->adapter = new DropboxAdapter($this->client);
         $this->fileSystem = new Filesystem($this->adapter);
-        if(isset($this->fileSystem->listContents()[0])) {
+        if (isset($this->fileSystem->listContents()[0])) {
             $this->path = $this->fileSystem->listContents()[0]['path'];
         }
     }
@@ -30,7 +33,7 @@ class Dropbox
 
     public function downloadBackup($baseName)
     {
-        $file = $this->adapter->read($this->path . '/' . $baseName)['contents'];
+        $file = $this->adapter->read($this->path.'/'.$baseName)['contents'];
         header("Content-Type: application/zip");
         echo $file;
     }

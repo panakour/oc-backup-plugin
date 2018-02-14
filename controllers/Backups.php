@@ -13,8 +13,8 @@ use PanaKour\Backup\Repository;
 
 class Backups extends Controller
 {
-
     public $pageTitle = 'Backups';
+
     private $repo;
 
     public function __construct(Repository $repository)
@@ -37,6 +37,7 @@ class Backups extends Controller
         Config::set('filesystems.disks.local.root', storage_path(Settings::UPLOAD_PATH));
         Artisan::call('backup:run', $artisanArguments);
         Flash::success('Backup has been created.');
+
         return Redirect::to(Backend::url('panakour/backup/backups'));
     }
 

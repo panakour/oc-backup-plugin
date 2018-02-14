@@ -21,16 +21,16 @@
         <?php else: ?>
             <?php foreach ($oldPathBackupFiles as $file): ?>
                 <tr>
-                    <td><?= $file['fileInfo']['basename'] ?></td>
-                    <td><?= $file['storage'] ?></td>
-                    <td><?= $file['size'] ?>KB</td>
-                    <td><?= $file['lastModified'] ?></td>
+                    <td><?=$file['fileInfo']['basename']?></td>
+                    <td><?=$file['storage']?></td>
+                    <td><?=$file['size']?>KB</td>
+                    <td><?=$file['lastModified']?></td>
                     <td class="column-button nolink">
                         <a
                             <?php if ($file['storage'] === 'Local'): ?>
-                                href="/storage/app/panakour-backup/<?= $file['fileInfo']['basename'] ?>"
+                                href="/storage/app/panakour-backup/<?=$file['fileInfo']['basename']?>"
                             <?php else: ?>
-                                href="<?= Backend::url('panakour/backup/backups/downloadDropboxBackup/' . $file['fileInfo']['basename']) ?>"
+                                href="<?=Backend::url('panakour/backup/backups/downloadDropboxBackup/'.$file['fileInfo']['basename'])?>"
                             <?php endif ?>
                                 class="btn btn-success btn-sm">
                             Download
@@ -40,18 +40,18 @@
             <?php endforeach ?>
             <?php foreach ($backupFiles as $file): ?>
                 <tr>
-                    <td><?= $file['fileInfo']['basename'] ?></td>
-                    <td><?= $file['storage'] ?></td>
-                    <td><?= $file['size'] ?>KB</td>
-                    <td><?= $file['lastModified'] ?></td>
+                    <td><?=$file['fileInfo']['basename']?></td>
+                    <td><?=$file['storage']?></td>
+                    <td><?=$file['size']?>KB</td>
+                    <td><?=$file['lastModified']?></td>
                     <td class="column-button nolink">
                         <a
                             <?php if ($file['storage'] === 'Local'): ?>
-                                href="/storage/app/uploads/panakour-backup/<?= $file['fileInfo']['basename'] ?>"
+                                href="/storage/app/uploads/panakour-backup/<?=$file['fileInfo']['basename']?>"
                             <?php else: ?>
-                                href="<?= Backend::url('panakour/backup/backups/downloadDropboxBackup/' . $file['fileInfo']['basename']) ?>"
+                                href="<?=Backend::url('panakour/backup/backups/downloadDropboxBackup/'.$file['fileInfo']['basename'])?>"
                             <?php endif ?>
-                        class="btn btn-success btn-sm">
+                                class="btn btn-success btn-sm">
                             Download
                         </a>
                     </td>

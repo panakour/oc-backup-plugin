@@ -10,15 +10,14 @@ use System\Classes\SettingsManager;
 
 class Plugin extends PluginBase
 {
-
     public function pluginDetails()
     {
         return [
-            'name'        => 'Backup',
+            'name' => 'Backup',
             'description' => 'Backup files and database of October CMS',
-            'author'      => 'Panagiotis Koursaris',
-            'icon'        => 'icon-floppy-o',
-            'homepage'    => 'https://github.com/panakour/oc-backup-plugin'
+            'author' => 'Panagiotis Koursaris',
+            'icon' => 'icon-floppy-o',
+            'homepage' => 'https://github.com/panakour/oc-backup-plugin',
         ];
     }
 
@@ -27,10 +26,10 @@ class Plugin extends PluginBase
         return [
             'backup' => [
                 'label' => 'Backup',
-                'url'   => Backend::url('panakour/backup/backups'),
-                'icon'  => 'icon-floppy-o',
-                'order' => 200
-            ]
+                'url' => Backend::url('panakour/backup/backups'),
+                'icon' => 'icon-floppy-o',
+                'order' => 200,
+            ],
         ];
     }
 
@@ -38,13 +37,13 @@ class Plugin extends PluginBase
     {
         return [
             'config' => [
-                'label'       => 'Backup',
-                'icon'        => 'icon-floppy-o',
+                'label' => 'Backup',
+                'icon' => 'icon-floppy-o',
                 'description' => 'Configure the backup system.',
-                'category'    => SettingsManager::CATEGORY_SYSTEM,
-                'class'       => Settings::class,
-                'order'       => 600
-            ]
+                'category' => SettingsManager::CATEGORY_SYSTEM,
+                'class' => Settings::class,
+                'order' => 600,
+            ],
         ];
     }
 
@@ -59,20 +58,20 @@ class Plugin extends PluginBase
 
         $aliasLoader = AliasLoader::getInstance();
 
-        $packages = Config::get($pluginNamespace . '::packages');
+        $packages = Config::get($pluginNamespace.'::packages');
 
         foreach ($packages as $name => $options) {
-            if (!empty($options['config']) && !empty($options['config_namespace'])) {
+            if (! empty($options['config']) && ! empty($options['config_namespace'])) {
                 Config::set($options['config_namespace'], $options['config']);
             }
 
-            if (!empty($options['providers'])) {
+            if (! empty($options['providers'])) {
                 foreach ($options['providers'] as $provider) {
                     App::register($provider);
                 }
             }
 
-            if (!empty($options['aliases'])) {
+            if (! empty($options['aliases'])) {
                 foreach ($options['aliases'] as $alias => $path) {
                     $aliasLoader->alias($alias, $path);
                 }

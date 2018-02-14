@@ -6,7 +6,7 @@ return [
         'spatie/laravel-backup' => [
             'providers' => [
                 \Spatie\Backup\BackupServiceProvider::class,
-                \PanaKour\Backup\DropboxServiceProvider::class
+                \PanaKour\Backup\DropboxServiceProvider::class,
             ],
 
             'config_namespace' => 'backup',
@@ -27,7 +27,7 @@ return [
                              *
                              * Directories used by the backup process will automatically be excluded.
                              */
-                            'exclude' =>  \Panakour\Backup\Models\Settings::getExcludedFiles(),
+                            'exclude' => \Panakour\Backup\Models\Settings::getExcludedFiles(),
 
                             /*
                              * Determines if symlinks should be followed.
