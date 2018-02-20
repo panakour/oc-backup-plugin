@@ -6,3 +6,4 @@
 1.0.4: Support Dropbox storage driver
 1.0.5: Support Dropbox storage driver (Fix if not configured yet)
 1.0.6: Change the backups path to fix 404 error on apache server because of the default .htaccess
+1.0.7: Display backup list even if exist only in the old path
