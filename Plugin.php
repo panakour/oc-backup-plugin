@@ -29,6 +29,7 @@ class Plugin extends PluginBase
                 'url' => Backend::url('panakour/backup/backups'),
                 'icon' => 'icon-floppy-o',
                 'order' => 200,
+                'permissions' => ['panakour.backup.access'],
             ],
         ];
     }
@@ -43,6 +44,17 @@ class Plugin extends PluginBase
                 'category' => SettingsManager::CATEGORY_SYSTEM,
                 'class' => Settings::class,
                 'order' => 600,
+                'permissions' => ['panakour.backup.access'],
+            ],
+        ];
+    }
+
+    public function registerPermissions()
+    {
+        return [
+            'panakour.backup.access' => [
+                'label' => 'Manage backups',
+                'tab' => 'Backup'
             ],
         ];
     }

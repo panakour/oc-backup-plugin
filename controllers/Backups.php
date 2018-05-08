@@ -15,6 +15,8 @@ class Backups extends Controller
 {
     public $pageTitle = 'Backups';
 
+    public $requiredPermissions = ['panakour.backup.access'];
+
     private $repo;
 
     public function __construct(Repository $repository)
