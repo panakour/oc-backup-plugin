@@ -6,6 +6,7 @@ return [
         'spatie/laravel-backup' => [
             'providers' => [
                 \Spatie\Backup\BackupServiceProvider::class,
+                \PanaKour\Backup\DropboxServiceProvider::class,
             ],
 
             'config_namespace' => 'backup',
@@ -26,7 +27,7 @@ return [
                              *
                              * Directories used by the backup process will automatically be excluded.
                              */
-                            'exclude' =>  \Panakour\Backup\Models\Settings::getExcludedFiles(),
+                            'exclude' => \Panakour\Backup\Models\Settings::getExcludedFiles(),
 
                             /*
                              * Determines if symlinks should be followed.
@@ -59,7 +60,7 @@ return [
                          * The disk names on which the backups will be stored.
                          */
                         'disks' => [
-                            'local',
+                            \Panakour\Backup\Models\Settings::getStorage(),
                         ],
                     ],
                 ],
@@ -71,8 +72,8 @@ return [
                  */
                 'monitorBackups' => [
                     [
-                        'name' => config('app.name'),
-                        'disks' => ['local'],
+                        'name' => 'panakour-backup',
+                        'disks' => [\Panakour\Backup\Models\Settings::getStorage()],
                         'newestBackupsShouldNotBeOlderThanDays' => 1,
                         'storageUsedMayNotBeHigherThanMegabytes' => 5000,
                     ],

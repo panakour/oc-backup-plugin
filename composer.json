@@ -2,7 +2,10 @@
   "name": "panakour/oc-backup-plugin",
   "type": "october-plugin",
   "description": "Backup files and database of October CMS",
-  "keywords": ["octobercms", "backup"],
+  "keywords": [
+    "octobercms",
+    "backup"
+  ],
   "license": "MIT",
   "authors": [
     {
@@ -12,6 +15,7 @@
   ],
   "require": {
     "php": ">=7.0",
-    "spatie/laravel-backup": "~5.0"
+    "spatie/laravel-backup": "~5.0",
+    "spatie/flysystem-dropbox": "^1.0"
   }
 }

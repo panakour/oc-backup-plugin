@@ -15,22 +15,23 @@ class Plugin extends PluginBase
         return [
             'name'        => 'Backup',
             'description' => 'Backup files and database of October CMS',
-            'author'      => 'Panagiotis Koursaris',
-            'icon'        => 'icon-floppy-o',
-            'homepage'    => 'https://github.com/panakour/oc-backup-plugin'
+            'author' => 'Panagiotis Koursaris',
+            'icon' => 'icon-floppy-o',
+            'homepage' => 'https://github.com/panakour/oc-backup-plugin',
         ];
     }
 
     public function registerNavigation()
     {
         return [
-            'backups' => [
-                'label'   => 'Backup',
-                'url'     => Backend::url('panakour/backup/backups'),
-                'icon'    => 'icon-floppy-o',
+            'backup' => [
+                'label' => 'Backup',
+                'url' => Backend::url('panakour/backup/backups'),
+                'icon' => 'icon-floppy-o',
                 'iconSvg' => 'plugins/panakour/backup/assets/images/backup-icon.svg',
-                'order'   => 200
-            ]
+                'order' => 200,
+                'permissions' => ['panakour.backup.access'],
+            ],
         ];
     }
 
@@ -38,13 +39,24 @@ class Plugin extends PluginBase
     {
         return [
             'config' => [
-                'label'       => 'Backup',
-                'icon'        => 'icon-floppy-o',
+                'label' => 'Backup',
+                'icon' => 'icon-floppy-o',
                 'description' => 'Configure the backup system.',
-                'category'    => SettingsManager::CATEGORY_SYSTEM,
-                'class'       => Settings::class,
-                'order'       => 600
-            ]
+                'category' => SettingsManager::CATEGORY_SYSTEM,
+                'class' => Settings::class,
+                'order' => 600,
+                'permissions' => ['panakour.backup.access'],
+            ],
+        ];
+    }
+
+    public function registerPermissions()
+    {
+        return [
+            'panakour.backup.access' => [
+                'label' => 'Manage backups',
+                'tab' => 'Backup'
+            ],
         ];
     }
 
@@ -59,20 +71,20 @@ class Plugin extends PluginBase
 
         $aliasLoader = AliasLoader::getInstance();
 
-        $packages = Config::get($pluginNamespace . '::packages');
+        $packages = Config::get($pluginNamespace.'::packages');
 
         foreach ($packages as $name => $options) {
-            if (!empty($options['config']) && !empty($options['config_namespace'])) {
+            if (! empty($options['config']) && ! empty($options['config_namespace'])) {
                 Config::set($options['config_namespace'], $options['config']);
             }
 
-            if (!empty($options['providers'])) {
+            if (! empty($options['providers'])) {
                 foreach ($options['providers'] as $provider) {
                     App::register($provider);
                 }
             }
 
-            if (!empty($options['aliases'])) {
+            if (! empty($options['aliases'])) {
                 foreach ($options['aliases'] as $alias => $path) {
                     $aliasLoader->alias($alias, $path);
                 }
