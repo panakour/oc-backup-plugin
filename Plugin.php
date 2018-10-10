@@ -10,14 +10,14 @@ use System\Classes\SettingsManager;
 
 class Plugin extends PluginBase
 {
-
     public function pluginDetails()
     {
         return [
-            'name' => 'Backup',
+            'name'        => 'Backup',
             'description' => 'Backup files and database of October CMS',
-            'author' => 'Panagiotis Koursaris',
-            'icon' => 'icon-floppy-o'
+            'author'      => 'Panagiotis Koursaris',
+            'icon'        => 'icon-floppy-o',
+            'homepage'    => 'https://github.com/panakour/oc-backup-plugin'
         ];
     }
 
@@ -25,10 +25,11 @@ class Plugin extends PluginBase
     {
         return [
             'backups' => [
-                'label'       => 'Backup',
-                'url'         => Backend::url('panakour/backup/backups'),
-                'icon'        => 'icon-floppy-o',
-                'order'       => 200,
+                'label'   => 'Backup',
+                'url'     => Backend::url('panakour/backup/backups'),
+                'icon'    => 'icon-floppy-o',
+                'iconSvg' => 'plugins/panakour/backup/assets/images/backup-icon.svg',
+                'order'   => 200
             ]
         ];
     }
