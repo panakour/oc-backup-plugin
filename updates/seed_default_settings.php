@@ -17,5 +17,6 @@ class SeedDefaultSettings extends Seeder
         ];
         Settings::set('include_files', $pathsToInclude);
         Settings::set('exclude_files', $pathsToExclude);
+        Settings::set('maximum_execution_time', 30);
     }
 }

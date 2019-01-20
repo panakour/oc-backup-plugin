@@ -2,16 +2,25 @@ fields:
 
     filename_prefix:
         label: Filename prefix
-        span: auto
+        span: storm
+        cssClass: col-md-4
         placeholder: The filename prefix used for the backup zip file.
 
     storage:
       label: Storage
-      span: auto
+      span: storm
+      cssClass: col-md-4
       type: dropdown
       options:
           local: Local
           dropbox: Dropbox
+
+    maximum_execution_time:
+      label: Max execution time of php
+      span: storm
+      cssClass: col-md-4
+      type: number
+      default: 30
 
 tabs:
 

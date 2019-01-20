@@ -84,4 +84,14 @@ class Settings extends Model
 
         return 'local';
     }
+
+    public static function getMaximumExecutionTime()
+    {
+        if (self::get('maximum_execution_time')) {
+            return self::get('maximum_execution_time');
+        }
+
+        return 30;
+    }
+
 }

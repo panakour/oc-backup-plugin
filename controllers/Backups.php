@@ -36,6 +36,7 @@ class Backups extends Controller
 
     public function createBackup($artisanArguments)
     {
+        set_time_limit(Settings::getMaximumExecutionTime());
         Config::set('filesystems.disks.local.root', storage_path(Settings::UPLOAD_PATH));
         Artisan::call('backup:run', $artisanArguments);
         Flash::success('Backup has been created.');
@@ -61,5 +62,15 @@ class Backups extends Controller
     public function downloadDropboxBackup($baseName)
     {
         (new Dropbox())->downloadBackup($baseName);
+    }
+
+    public function onCreateWholeProjectBackup()
+    {
+        config([
+            "backup.backup.source.files.include" => base_path(),
+            "backup.backup.source.files.exclude" => [],
+
+        ]);
+        return $this->createBackup(['--disable-notifications' => true, '--filename' => "whole_project_backup.zip"]);
     }
 }
