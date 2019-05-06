@@ -11,7 +11,7 @@ This plugin let you create backups of your files and databases. It uses the amaz
 
 <a name="requirements"></a>
 ## Requirements
-This backup package requires **PHP 7 or higher** with the [ZIP module](http://php.net/manual/en/book.zip.php) and **Laravel 5.5 or higher**. It's not compatible with Windows servers.
+This backup package requires **PHP 7.1 or higher** with the [ZIP module](http://php.net/manual/en/book.zip.php) and **Laravel 5.5 or higher**. It's not compatible with Windows servers.
 
 The plugin needs free disk space where it can create backups. Ensure that you have **at least** as much free space as the total size of the files you want to backup.
 
