@@ -13,6 +13,7 @@ fields:
       type: dropdown
       options:
           local: Local
+          webdav: WebDAV
           dropbox: Dropbox
 
     maximum_execution_time:

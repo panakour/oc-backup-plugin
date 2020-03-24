@@ -1,13 +1,15 @@
 <?php namespace PanaKour\Backup;
 
 use File;
+use Log;
+use Storage;
 use Panakour\Backup\Models\Settings;
 
 class Repository
 {
     public function getAll()
     {
-        return array_merge($this->getLocalBackups(), $this->getDropBoxBackups());
+        return array_merge($this->getLocalBackups(), $this->getWebdavBackups(), $this->getDropBoxBackups());
     }
 
     public function getLocalBackups()
@@ -19,6 +21,29 @@ class Repository
             $backups[$index]['fileInfo'] = pathinfo(Settings::getBackupsPath().'/'.$file);
             $backups[$index]['size'] = ceil(filesize(Settings::getBackupsPath().'/'.$file) / 1024);
             $backups[$index]['lastModified'] = date('d.m.Y', filemtime(Settings::getBackupsPath().'/'.$file));
+        }
+
+        return $backups;
+    }
+
+    public function getWebdavBackups()
+    {
+        $backups = [];
+        $path = "/panakour-backup";
+        $webdavBackupFiles = Storage::disk('webdav')->files($path);
+        foreach ($webdavBackupFiles as $index => $file) {
+
+            //$size = ceil(Storage::disk('webdav')->size($file)/1024);
+            //$lastModified = date('d.m.Y', Storage::disk('webdav')->lastModified($file));
+
+            $size = 0;
+            $lastModified = "00.00.0000";
+
+            $backups[$index]['storage'] = 'Webdav';
+            $backups[$index]['fileInfo']['basename'] = basename($file);
+            $backups[$index]['fileInfo']['path'] = $file;
+            $backups[$index]['size'] = $size;
+            $backups[$index]['lastModified'] = $lastModified;
         }
 
         return $backups;
