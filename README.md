@@ -55,6 +55,24 @@ Then add to the `config/filesystems.php` file the followed array with your token
 ```
 Be sure that you select `Dropbox` option from settings.
 
+##### Webdav usage
+
+Then add to the `config/filesystems.php` file the followed array with your token and app name:
+```php
+'disks' => [
+    ...
+            'webdav' => [
+            'driver' => 'webdav',
+            'baseUri' => 'YOUR_WEBDAV_DOMAIN',
+            'path_prefix' => '/remote.php/dav/files/USERNAME/', //for nextcloud
+            'path_alias' => '',
+            'userName' => 'USER',
+            'password' => 'PASSWORD',
+        ],
+]
+```
+Be sure that you select `Webdav` option from settings.
+
 <a name="dumping-db"></a>
 ## Dumping the database
 `mysqldump` and `pg_dump` are used to dump the database. If they are not installed in a default location, you can add a key named `dump.dump_binary_path` in October's own `database.php` config file. **Only fill in the path to the binary**. Do not include the name of the binary itself.
