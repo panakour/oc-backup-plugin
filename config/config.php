@@ -7,6 +7,7 @@ return [
             'providers' => [
                 \Spatie\Backup\BackupServiceProvider::class,
                 \PanaKour\Backup\DropboxServiceProvider::class,
+                \PanaKour\Backup\WebdavServiceProvider::class,
             ],
 
             'config_namespace' => 'backup',

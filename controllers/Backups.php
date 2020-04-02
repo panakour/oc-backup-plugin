@@ -10,6 +10,8 @@ use October\Rain\Support\Facades\Config;
 use PanaKour\Backup\Dropbox;
 use Panakour\Backup\Models\Settings;
 use PanaKour\Backup\Repository;
+use Storage;
+use Response;
 
 class Backups extends Controller
 {
@@ -62,6 +64,12 @@ class Backups extends Controller
     public function downloadDropboxBackup($baseName)
     {
         (new Dropbox())->downloadBackup($baseName);
+    }
+
+    public function downloadWebdavBackup($baseName)
+    {
+        $path = "panakour-backup"."/".$baseName;
+        return Storage::disk('webdav')->get($path);
     }
 
     public function onCreateWholeProjectBackup()
