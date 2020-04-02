@@ -1,6 +1,7 @@
 <?php namespace PanaKour\Backup;
 
 use File;
+use Illuminate\Support\Facades\Config;
 use Log;
 use Storage;
 use Panakour\Backup\Models\Settings;
@@ -28,6 +29,9 @@ class Repository
 
     public function getWebdavBackups()
     {
+        if (Config::get('filesystems.disks.webdav') === null) {
+            return [];
+        }
         $backups = [];
         $path = "/panakour-backup";
         $webdavBackupFiles = Storage::disk('webdav')->files($path);
