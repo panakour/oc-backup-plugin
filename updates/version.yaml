@@ -10,3 +10,4 @@
 1.0.8: Add permissions.
 1.0.9: Add option to create backup of whole project independently of settings
 1.0.10: Added webdav driver (thanks to @AdrienAdB )
+1.0.11: Fix symfony/process dependency
